@@ -1,0 +1,7 @@
+version: '2'
+services:
+  specs:
+    build: ./
+    volumes:
+      - ./:/app
+
