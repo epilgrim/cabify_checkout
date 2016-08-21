@@ -1,15 +1,38 @@
 require 'checkout'
 
 RSpec.describe Checkout do
-  [
-    { items: %w(VOUCHER TSHIRT MUG), price: 32.5 },
-    { items: %w(VOUCHER TSHIRT VOUCHER), price: 25.0 },
-    { items: %w(TSHIRT TSHIRT TSHIRT VOUCHER TSHIRT), price: 81.0 },
-    { items: %w(VOUCHER TSHIRT VOUCHER VOUCHER MUG TSHIRT TSHIRT), price: 74.5 }
-  ].each do |expectation|
-    it 'satisfies cabify\'s expectations for the test' do
-      expectation[:items].each { |item| subject.scan item }
-      expect(subject.total).to eq(expectation[:price])
+  let(:repository) { instance_double Model::InMemoryRepository }
+  let(:item_vader) { instance_double Model::Item, code: 'vader', name: 'darth vader', price: 3 }
+  let(:item_luke) { instance_double Model::Item, code: 'luke', name: 'darth luke', price: 5 }
+
+  before :each do
+    Checkout.configure do |config|
+      config.repository = repository
+    end
+    allow(repository).to receive(:find).with('vader').and_return(item_vader)
+    allow(repository).to receive(:find).with('luke').and_return(item_luke)
+  end
+
+  describe 'total calculation' do
+    context 'no items' do
+      it 'has 0 value' do
+        expect(subject.total).to eq(0)
+      end
+    end
+
+    context 'single item' do
+      it 'has the value of the item' do
+        subject.scan 'vader'
+        expect(subject.total).to eq(3)
+      end
+    end
+
+    context 'multiple items' do
+      it 'has the value of the sum of the items' do
+        subject.scan 'vader'
+        subject.scan 'luke'
+        expect(subject.total).to eq(8)
+      end
     end
   end
 end
