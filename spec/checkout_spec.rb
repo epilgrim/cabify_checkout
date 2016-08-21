@@ -1,4 +1,7 @@
 require 'checkout'
+require 'model/in_memory_repository'
+require 'model/item'
+require 'discounts/every_x_get_y_free'
 
 RSpec.describe Checkout do
   let(:repository) { instance_double Model::InMemoryRepository }

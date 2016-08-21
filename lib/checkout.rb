@@ -1,8 +1,4 @@
 require 'dry-configurable'
-require 'model/in_memory_repository'
-require 'model/item'
-require 'discounts/every_x_get_y_free'
-require 'discounts/new_price_by_quantity'
 
 class Checkout
   extend Dry::Configurable
