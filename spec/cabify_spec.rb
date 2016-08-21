@@ -1,12 +1,14 @@
 require 'checkout'
 
 RSpec.describe Checkout do
-  Checkout.configure do |config|
-    config.repository = Model::InMemoryRepository.new [
-      Model::Item.new(code: 'VOUCHER', name: 'Cabify Voucher', price: 5),
-      Model::Item.new(code: 'TSHIRT', name: 'Cabify T-Shirt', price: 20),
-      Model::Item.new(code: 'MUG', name: 'Cabify Mug', price: 7.5)
-    ]
+  before do
+    Checkout.configure do |config|
+      config.repository = Model::InMemoryRepository.new [
+        Model::Item.new(code: 'VOUCHER', name: 'Cabify Voucher', price: 5),
+        Model::Item.new(code: 'TSHIRT', name: 'Cabify T-Shirt', price: 20),
+        Model::Item.new(code: 'MUG', name: 'Cabify Mug', price: 7.5)
+      ]
+    end
   end
 
   [
