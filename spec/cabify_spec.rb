@@ -10,6 +10,9 @@ RSpec.describe Checkout do
       ]
     end
   end
+  let(:discount_voucher) { Discounts::EveryXGetYFree.new('VOUCHER', 2, 1) }
+  let(:discounts) { [discount_voucher] }
+  let(:subject) { described_class.new(discounts) }
 
   [
     { items: %w(VOUCHER TSHIRT MUG), price: 32.5 },

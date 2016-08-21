@@ -1,12 +1,14 @@
 require 'dry-configurable'
 require 'model/in_memory_repository'
 require 'model/item'
+require 'discounts/every_x_get_y_free'
 
 class Checkout
   extend Dry::Configurable
   setting :repository
 
-  def initialize
+  def initialize(discounts = [])
+    @discounts = discounts
     @items = []
   end
 
@@ -15,7 +17,9 @@ class Checkout
   end
 
   def total
-    @items.reduce(0) { |partial, item| partial + item.price }
+    items = @items.dup
+    @discounts.each { |discount| items = discount.apply_to(items) }
+    items.reduce(0) { |partial, item| partial + item.price }
   end
 
   private
