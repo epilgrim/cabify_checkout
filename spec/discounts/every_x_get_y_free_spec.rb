@@ -32,4 +32,8 @@ RSpec.describe Discounts::EveryXGetYFree do
     expected_items = items + ['correct_discount']
     expect(subject.apply_to(items)).to eq(expected_items)
   end
+
+  it 'raises exeption if you get more free items than what you pay' do
+    expect { described_class.new('rand', 1, 2) }.to raise_error(ArgumentError)
+  end
 end
