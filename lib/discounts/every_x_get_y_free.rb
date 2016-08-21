@@ -18,7 +18,7 @@ module Discounts
         name: "Free #{item.name}",
         price: - 1 * item.price * number_of_free_items
       )
-      items << free_item
+      items + [free_item]
     end
   end
 end

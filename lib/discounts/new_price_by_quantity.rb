@@ -17,7 +17,7 @@ module Discounts
         name: "Bulk Discount #{item.name}",
         price: - 1 * (item.price - @new_price) * number_of_relevant_items
       )
-      items << free_item
+      items + [free_item]
     end
   end
 end
