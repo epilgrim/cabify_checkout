@@ -12,7 +12,7 @@ module Discounts
       number_of_free_items = (number_of_relevant_items / @every) * @get_free
       return items unless number_of_free_items > 0
 
-      item = items.first
+      item = relevant_items.first
       free_item = Model::Item.new(
         code: "discount_#{item.code}",
         name: "Free #{item.name}",

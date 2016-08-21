@@ -12,7 +12,7 @@ RSpec.describe Discounts::EveryXGetYFree do
   end
 
   it 'adds a new item when the discount applies once' do
-    items = [item, item]
+    items = [item_irrelevant, item, item]
     allow(Model::Item).to(
       receive(:new)
       .with(code: 'discount_rand', name: 'Free Rand al\'thor', price: -5)
@@ -23,7 +23,7 @@ RSpec.describe Discounts::EveryXGetYFree do
   end
 
   it 'adds a new item with the correct price when the discount applies multiple times' do
-    items = [item, item, item, item, item]
+    items = [item_irrelevant, item, item, item, item, item]
     allow(Model::Item).to(
       receive(:new)
       .with(code: 'discount_rand', name: 'Free Rand al\'thor', price: -10)

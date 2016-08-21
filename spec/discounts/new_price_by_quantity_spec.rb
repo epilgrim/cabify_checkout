@@ -12,7 +12,7 @@ RSpec.describe Discounts::NewPriceByQuantity do
   end
 
   it 'adds a new item when the discount applies' do
-    items = [item, item, item]
+    items = [item_irrelevant, item, item, item]
     allow(Model::Item).to(
       receive(:new)
       .with(code: 'discount_rand', name: 'Bulk Discount Rand al\'thor', price: -6)
