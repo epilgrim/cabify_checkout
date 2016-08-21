@@ -14,12 +14,16 @@ class Checkout
   end
 
   def total
-    items = @items.dup
-    @discounts.each { |discount| items = discount.apply_to(items) }
-    items.reduce(0) { |partial, item| partial + item.price }
+    invoice_items.reduce(0) { |partial, item| partial + item.price }
   end
 
   private
+
+  def invoice_items
+    items = @items.dup
+    @discounts.each { |discount| items = discount.apply_to(items) }
+    items
+  end
 
   def repository
     Checkout.config.repository
