@@ -20,9 +20,7 @@ class Checkout
   private
 
   def invoice_items
-    items = @items.dup
-    @discounts.each { |discount| items = discount.apply_to(items) }
-    items
+    @discounts.reduce(@items.dup) { |items, discount| discount.apply_to(items) }
   end
 
   def repository
