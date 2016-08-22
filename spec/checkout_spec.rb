@@ -20,28 +20,23 @@ RSpec.describe Checkout do
 
   context 'without discounts' do
     describe 'total calculation' do
-      context 'no items' do
-        it 'has 0 value' do
-          expect(subject.total).to eq(0)
-        end
+      it 'has 0 value when no items' do
+        expect(subject.total).to eq(0)
       end
 
-      context 'single item' do
-        it 'has the value of the item' do
-          subject.scan 'vader'
-          expect(subject.total).to eq(3)
-        end
+      it 'has the value of the single item' do
+        subject.scan 'vader'
+        expect(subject.total).to eq(3)
       end
 
-      context 'multiple items' do
-        it 'has the value of the sum of the items' do
-          subject.scan 'vader'
-          subject.scan 'luke'
-          expect(subject.total).to eq(8)
-        end
+      it 'has the value of the sum of the items' do
+        subject.scan 'vader'
+        subject.scan 'luke'
+        expect(subject.total).to eq(8)
       end
     end
   end
+
   context 'with discounts' do
     let(:subject) { described_class.new([discount_1, discount_2]) }
     before do
