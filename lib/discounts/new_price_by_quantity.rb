@@ -2,7 +2,7 @@ module Discounts
   class NewPriceByQuantity
     def initialize(code:, quantity:, new_price:)
       @item_code = code
-      @quantity = quantity
+      @quantity = Integer quantity
       @new_price = new_price
     end
 

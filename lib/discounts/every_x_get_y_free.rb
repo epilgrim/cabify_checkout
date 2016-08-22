@@ -1,6 +1,8 @@
 module Discounts
   class EveryXGetYFree
     def initialize(code:, every:, get_free:)
+      @every = Integer every
+      @get_free = Integer get_free
       if every <= get_free
         raise(
           ArgumentError,
@@ -8,8 +10,6 @@ module Discounts
         )
       end
       @item_code = code
-      @every = every
-      @get_free = get_free
     end
 
     def apply_to(items)
