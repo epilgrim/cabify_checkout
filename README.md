@@ -4,6 +4,10 @@ Cabify Physical Store Checkout Process
 How to run
 ----------
 
+The expectations required in the description of the assignment can be run with:
+
+    docker-compose run --rm specs rspec spec/cabify_spec.rb
+
 The full test suit of the exercise can be run with:
 
     docker-compose run --rm specs

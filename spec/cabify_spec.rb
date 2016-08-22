@@ -25,7 +25,7 @@ RSpec.describe Checkout do
     { items: %w(TSHIRT TSHIRT TSHIRT VOUCHER TSHIRT), price: 81.0 },
     { items: %w(VOUCHER TSHIRT VOUCHER VOUCHER MUG TSHIRT TSHIRT), price: 74.5 }
   ].each do |expectation|
-    it 'satisfies cabify\'s expectations for the test' do
+    it "Cabify's expectation. Price #{expectation[:price]} for #{expectation[:items]}" do
       expectation[:items].each { |item| subject.scan item }
       expect(subject.total).to eq(expectation[:price])
     end
