@@ -26,11 +26,11 @@ All the other tests are unit tests.
 Things that I would change if pushing further
 ---------------------------------------------
 
-* Separation of Item / Invoice Item.
+* Separation of Item / InvoiceItem.
 
-  At this point, the same model is reused to represent both domain objects. It should be made explicit that they are two different concepts.
+  At this point, the same model is reused to represent both domain objects. It should be made explicit that they are two different concepts. That way, InvoiceItem would be able to differenciate normal Items (from real products), from the generated ones (eg. discounts)
 
-* Creation of Domain Concepts Cart and Invoice.
+* Creation of Domain Concepts Cart and Invoice as container for Items and InvoiceItem.
 
   This will let me model this concepts as immutable objects (as opposed to plain arrays as it is right now), and enforce side-effect free transformations.
 
