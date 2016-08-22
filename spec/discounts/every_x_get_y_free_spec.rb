@@ -2,7 +2,7 @@ require 'discounts/every_x_get_y_free'
 require 'model/item'
 
 RSpec.describe Discounts::EveryXGetYFree do
-  let(:subject) { described_class.new('rand', 2, 1) }
+  let(:subject) { described_class.new code: 'rand', every: 2, get_free: 1 }
   let(:item) { Model::Item.new code: 'rand', name: 'Rand al\'thor', price: 5 }
   let(:item_irrelevant) { Model::Item.new code: 'matt', name: 'Matt Cauthon', price: 1 }
 
@@ -34,6 +34,6 @@ RSpec.describe Discounts::EveryXGetYFree do
   end
 
   it 'raises exeption if you get more free items than what you pay' do
-    expect { described_class.new('rand', 1, 2) }.to raise_error(ArgumentError)
+    expect { described_class.new code: 'rand', every: 1, get_free: 2 }.to raise_error(ArgumentError)
   end
 end

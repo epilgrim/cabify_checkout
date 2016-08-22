@@ -2,7 +2,7 @@ require 'discounts/new_price_by_quantity'
 require 'model/item'
 
 RSpec.describe Discounts::NewPriceByQuantity do
-  let(:subject) { described_class.new('rand', 2, 3) }
+  let(:subject) { described_class.new(code: 'rand', quantity: 2, new_price: 3) }
   let(:item) { Model::Item.new code: 'rand', name: 'Rand al\'thor', price: 5 }
   let(:item_irrelevant) { Model::Item.new code: 'matt', name: 'Matt Cauthon', price: 1 }
 

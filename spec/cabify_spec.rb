@@ -14,8 +14,8 @@ RSpec.describe Checkout do
       ]
     end
   end
-  let(:discount_voucher) { Discounts::EveryXGetYFree.new('VOUCHER', 2, 1) }
-  let(:discount_tshirt) { Discounts::NewPriceByQuantity.new('TSHIRT', 3, 19) }
+  let(:discount_voucher) { Discounts::EveryXGetYFree.new(code: 'VOUCHER', every: 2, get_free: 1) }
+  let(:discount_tshirt) { Discounts::NewPriceByQuantity.new(code: 'TSHIRT', quantity: 3, new_price: 19) }
   let(:discounts) { [discount_voucher, discount_tshirt] }
   let(:subject) { described_class.new(discounts) }
 

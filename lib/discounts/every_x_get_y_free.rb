@@ -1,13 +1,13 @@
 module Discounts
   class EveryXGetYFree
-    def initialize(item_code, every, get_free)
+    def initialize(code:, every:, get_free:)
       if every <= get_free
         raise(
           ArgumentError,
           'Discounts::EveryXGetYFree misconfiguration. every <= get_free'
         )
       end
-      @item_code = item_code
+      @item_code = code
       @every = every
       @get_free = get_free
     end
