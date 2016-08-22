@@ -10,7 +10,7 @@ class Checkout
   end
 
   def scan(item)
-    @items << repository.find(item)
+    @items << repository.find!(item)
   end
 
   def total

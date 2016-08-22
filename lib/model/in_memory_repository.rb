@@ -4,7 +4,7 @@ module Model
       @items = items
     end
 
-    def find(code)
+    def find!(code)
       @items.find(-> { raise Model::ItemNotFound }) { |i| i.code == code }
     end
   end

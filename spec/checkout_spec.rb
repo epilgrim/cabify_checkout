@@ -14,8 +14,8 @@ RSpec.describe Checkout do
     Checkout.configure do |config|
       config.repository = repository
     end
-    allow(repository).to receive(:find).with('vader').and_return(item_vader)
-    allow(repository).to receive(:find).with('luke').and_return(item_luke)
+    allow(repository).to receive(:find!).with('vader').and_return(item_vader)
+    allow(repository).to receive(:find!).with('luke').and_return(item_luke)
   end
 
   context 'without discounts' do

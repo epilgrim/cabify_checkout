@@ -8,10 +8,10 @@ RSpec.describe Model::InMemoryRepository do
   let(:subject) { described_class.new([smaug, gandalf]) }
 
   it 'raises error if the item is not in the repository' do
-    expect { subject.find('frodo') }.to raise_error(Model::ItemNotFound)
+    expect { subject.find!('frodo') }.to raise_error(Model::ItemNotFound)
   end
 
   it 'returns items by code' do
-    expect(subject.find('smaug')).to be(smaug)
+    expect(subject.find!('smaug')).to be(smaug)
   end
 end
